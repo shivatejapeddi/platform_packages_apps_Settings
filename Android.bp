@@ -28,7 +28,15 @@ android_library {
         "framework-wifi-vendor-hide-access-defaults",
     ],
 
-    srcs: ["src/**/*.java"],
+    srcs: ["src/**/*.java",
+           "BenzoSettings/src/**/*.java",
+    ],
+
+    aaptflags: ["--extra-packages com.benzo.settings"],
+
+    resource_dirs: ["res",
+                    "BenzoSettings/res"
+    ],
 
     static_libs: [
         "androidx-constraintlayout_constraintlayout",
@@ -64,6 +72,9 @@ android_library {
         "app-compat-annotations",
         "telephony-ext",
     ],
+    optimize: {
+        proguard_flags_files: ["proguard-core.flags"],
+    },
 }
 
 platform_compat_config {
