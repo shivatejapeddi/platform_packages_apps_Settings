@@ -32,7 +32,7 @@ import android.util.Log;
 
 import com.android.internal.util.ArrayUtils;
 
-import com.android.internal.util.aicp.PackageUtils;
+import com.android.internal.util.aospextended.AEXUtils;
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
@@ -225,7 +225,7 @@ public class LiveDisplaySettings extends SettingsPreferenceFragment implements
         mReadingMode = (SwitchPreference) findPreference(KEY_LIVE_DISPLAY_READING_ENHANCEMENT);
         if (liveDisplayPrefs != null && mReadingMode != null &&
                 (!mHardware.isSupported(LineageHardwareManager.FEATURE_READING_ENHANCEMENT) ||
-                PackageUtils.isPackageAvailable(getContext(), getContext().getString(
+                AEXUtils.isPackageAvailable(getContext(), getContext().getString(
                         com.android.internal.R.string.config_defaultWellbeingPackage)))) {
             liveDisplayPrefs.removePreference(mReadingMode);
             mReadingMode = null;
@@ -407,7 +407,7 @@ public class LiveDisplaySettings extends SettingsPreferenceFragment implements
 
     @Override
     public int getMetricsCategory() {
-        return MetricsEvent.AICP_METRICS;
+        return MetricsEvent.EXTENSIONS;
     }
 
     @Override
@@ -456,7 +456,7 @@ public class LiveDisplaySettings extends SettingsPreferenceFragment implements
                 result.add(KEY_PICTURE_ADJUSTMENT);
             }
             if (!config.hasFeature(FEATURE_READING_ENHANCEMENT) ||
-                    PackageUtils.isPackageAvailable(context, context.getString(
+                    AEXUtils.isPackageAvailable(context, context.getString(
                             com.android.internal.R.string.config_defaultWellbeingPackage))) {
                 result.add(KEY_LIVE_DISPLAY_READING_ENHANCEMENT);
             }
